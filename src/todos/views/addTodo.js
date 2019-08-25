@@ -1,8 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {addTodo} from '../actions.js';
+import PropTypes from 'prop-types'
 
 class AddTodo extends React.Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -15,7 +18,7 @@ class AddTodo extends React.Component {
   commitAdd() {
     let text = this.state.text;
     if(text && this.state.text) {
-
+      this.props.onAdd(this.state.text);
     }
   }
 
@@ -30,4 +33,18 @@ class AddTodo extends React.Component {
   }
 }
 
-export default AddTodo;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAdd: (text) => {
+      dispatch(addTodo(text));
+    }
+  }
+};
+
+
+AddTodo.propTypes = {
+  onAdd: PropTypes.func.isRequired
+};
+
+// export default AddTodo;/
+export default connect(null, mapDispatchToProps)(AddTodo);

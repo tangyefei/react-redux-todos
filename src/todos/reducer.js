@@ -8,9 +8,19 @@ export default (state = [], action) => {
           text: action.text,
           completed: false
         },
-        ...state
+        ...state 
       ]
     }
+
+    case 'REMOVE_TODO': {
+      return state.filter((todoItem) => {
+        return todoItem.id !== action.id;
+      })
+    }
+
+    default: {
+      return state
+    }
   }
-});
+};
   

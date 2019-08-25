@@ -6,3 +6,11 @@ export const addTodo = (text) => ({
   id: nextTodoId ++,
   text: text
 });
+
+export const removeTodo = (id) => ({
+  type: 'REMOVE_TODO',
+  id: id
+});
+
+
+
